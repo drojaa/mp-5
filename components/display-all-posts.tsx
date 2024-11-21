@@ -1,8 +1,6 @@
 "use client";
 import createNewPost from "@/lib/createNewPost";
 import getPostByAlias from "@/lib/getPostByAlias"
-import { PostProps } from "@/types";
-import { useState } from "react";
 import Input from "../components/input"
 
 

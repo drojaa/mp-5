@@ -1,7 +1,7 @@
 
 import { Textarea } from "@mui/joy";
 import { Button, TextField, Alert } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import getPostByAlias  from "../lib/getPostByAlias";
 
 
@@ -28,9 +28,6 @@ export default function Input({
     }
   }
 
-  function changeAlert() {
-    setAlert(!alert)
-  }
   
   return (
     <div>
