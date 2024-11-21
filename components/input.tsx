@@ -15,12 +15,17 @@ export default function Input({
   const [alias, setAlias] = useState("");
   const [url, setUrl] = useState("");
   const [alert, setAlert] = useState(false)
+  const [link, setLink] = useState("");
+  const [showLink, setShowLink] = useState(false)
   async function submitNewPost() {
     // Used to determine weather the alias already exist, if so then it will return the 
     if (await getPostByAlias(alias) === null) {
       setAlert(false)
+      setLink(`https://mp-5-blue.vercel.app/${alias}`)
+      setShowLink(true)
     } else {
       setAlert(true)
+      setShowLink(false)
     }
     if (await createFunc(alias, url)) {
       setAlias("");
@@ -70,7 +75,7 @@ export default function Input({
            Alias Already Exists
            </Alert>
         )}
-       <p style={{ backgroundColor: 'pink', padding: "30px"}}>https://mp-5-blue.vercel.app/{alias}</p>
+       { showLink && (<p style={{ backgroundColor: 'pink', padding: "30px"}}>{link}</p>)}
       </div>
     </form>
     </div>
