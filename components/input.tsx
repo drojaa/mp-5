@@ -70,7 +70,7 @@ export default function Input({
            Alias Already Exists
            </Alert>
         )}
-       
+       <p style={{ backgroundColor: 'pink', padding: "30px"}}>https://mp-5-blue.vercel.app/{alias}</p>
       </div>
     </form>
     </div>
