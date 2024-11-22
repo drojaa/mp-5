@@ -23,6 +23,7 @@ export default function Input({
    setAlert(false)
    setShowLink(false)
    setIsUrlValid(false)
+   
     if (!isValid(url)){
       setIsUrlValid(true)
       return;
