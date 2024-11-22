@@ -23,7 +23,7 @@ export default function Input({
    setAlert(false)
    setShowLink(false)
    setIsUrlValid(false)
-   
+
     if (!isValid(url)){
       setIsUrlValid(true)
       return;
@@ -47,6 +47,7 @@ export default function Input({
       new URL(url);
       return true;
     } catch (e) {
+      console.log(e) //to get rid of e error
       return false;
     }
   }
