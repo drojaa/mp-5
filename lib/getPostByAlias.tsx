@@ -7,18 +7,18 @@ export default async function getPostByAlias(
 ): Promise<PostProps | null> {
   const postsCollection = await getCollection(POSTS_COLLECTION);
   
-  // Find a document with the given alias
+ 
   const data = await postsCollection.findOne({ alias });
 
   if (!data) {
-    return null; // Return null if no matching document is found
+    return null; 
   }
 
-  // Construct and return the post object
+  
   const post: PostProps = {
-    id: data._id.toHexString(), // Convert ObjectId to string
-    alias: data.alias,         // Use alias from the retrieved data
-    url: data.url,             // Use url from the retrieved data
+    id: data._id.toHexString(), 
+    alias: data.alias,        
+    url: data.url,             
   };
 
   return post;

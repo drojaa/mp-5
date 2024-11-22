@@ -11,7 +11,7 @@ export default async function FullPostPage({
 }) {
     const {alias} = await params;
     const post = await getPostByAlias(alias);
-
+4
     if (post === null) {
         return <p>post not found</p>;
     }

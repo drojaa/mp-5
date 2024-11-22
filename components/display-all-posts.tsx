@@ -5,31 +5,26 @@ import Input from "../components/input"
 
 
 export default function DisplayAllPosts(){
-
+    // used to check if you're allowed to add alias to db, just checks to see if alias exist or not
     async function checkNewPost(alias: string){
         const p = await getPostByAlias(alias);
         if (p === null) {
-            console.log("Alias does not exist, ready to create new post.");
           return false;
         }
-        console.log("Alias already exists, cannot create new post.");
         return true;
     }
-
+  // if first function is true, then it adds to database
     async function addNewPost(alias: string, url: string) {
         const aliasDoesExist = await checkNewPost(alias);
         
         if (aliasDoesExist) {
-            console.log("Post with this alias already exists.");
             return false;
         }
-        const p = await createNewPost(alias, url); // Create the new post
+        const p = await createNewPost(alias, url); 
         if (p === null) {
-          console.log("Failed to create new post.");
           return false;
         }
     
-        console.log("New post created successfully.");
         return true;
         
       }

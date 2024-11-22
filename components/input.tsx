@@ -15,25 +15,41 @@ export default function Input({
   const [alias, setAlias] = useState("");
   const [url, setUrl] = useState("");
   const [alert, setAlert] = useState(false)
+  const [urlValid, setIsUrlValid] = useState(false)
   const [link, setLink] = useState("");
   const [showLink, setShowLink] = useState(false)
   async function submitNewPost() {
-    // Used to determine weather the alias already exist, if so then it will return the 
-    if (await getPostByAlias(alias) === null) {
+   //used to reset
+   setAlert(false)
+   setShowLink(false)
+   setIsUrlValid(false)
+    if (!isValid(url)){
+      setIsUrlValid(true)
+      return;
+    } 
+     // Used to determine weather the alias already exist
+    else if (await getPostByAlias(alias) === null) {
       setAlert(false)
       setLink(`https://mp-5-blue.vercel.app/${alias}`)
       setShowLink(true)
-    } else {
+      } else {
       setAlert(true)
       setShowLink(false)
     }
     if (await createFunc(alias, url)) {
-      setAlias("");
-      setUrl("");
+      return;
+    }
+  }
+  //used to check if the url is valid or not
+  function isValid(url : string) {
+    try {
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 
-  
   return (
     <div>
       <form
@@ -75,7 +91,13 @@ export default function Input({
            Alias Already Exists
            </Alert>
         )}
+         { urlValid && (
+           <Alert variant="standard" color="info" >
+           URL is Invalid
+           </Alert>
+        )}
        { showLink && (<p style={{ backgroundColor: 'pink', padding: "30px"}}>{link}</p>)}
+       
       </div>
     </form>
     </div>
